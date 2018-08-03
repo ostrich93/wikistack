@@ -43,6 +43,11 @@ const User = db.define('user', {
   },
 });
 
+function generateSlug(titlename){
+  var reggae = new RegExp();
+  return String.prototype.replace(titlename);
+}
+
 module.exports = {
   db,
   Page,

@@ -13,8 +13,15 @@ router.get('/', async (req, res, next) => {
   }
 });
 router.post('/', async (req, res, next) => {
-  // res.send('got to POST /wiki');
-  res.json(req.body);
+  const page = new Page({
+    title: req.body.title,
+    content: req.body.content
+  });
+
+  try {
+    await page.save();
+    res.redirect('/');
+  } catch (error) { next(error) }
 });
 router.get('/add', async (req, res, next) => {
   try {
