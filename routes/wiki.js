@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Page } = require('../models');
 const addPage = require('../views/addPage');
+const wikiPage = require('../views/wikipage');
 
 // router.use(express.json());
 
@@ -15,13 +16,15 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   const page = new Page({
     title: req.body.title,
-    content: req.body.content
+    content: req.body.content,
   });
 
   try {
     await page.save();
-    res.redirect('/');
-  } catch (error) { next(error) }
+    res.redirect(`/wiki/${page.slug}`);
+  } catch (error) {
+    next(error);
+  }
 });
 router.get('/add', async (req, res, next) => {
   try {
@@ -33,12 +36,13 @@ router.get('/add', async (req, res, next) => {
 
 router.get('/:slug', async (req, res, next) => {
   try {
-    page = await Page.findOne({
-      where: {slug: `${req.params.slug}`}
+    const page = await Page.findOne({
+      where: { slug: `${req.params.slug}` },
     });
-    res.json(page);
-  } catch (error){ console.error(error);}
-  res.send(`hit dynamic route at ${req.params.slug}`);
+    res.send(wikiPage(page));
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 module.exports = router;
