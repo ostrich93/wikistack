@@ -27,14 +27,13 @@ const Page = db.define('page', {
   status: {
     type: Sequelize.ENUM('open', 'closed'),
   },
-},
-
+}, {
   hooks: {
     beforeValidate: (page, options) => {
       page.slug = generateSlug(page.title);
     }
   }
-);
+});
 
 const User = db.define('user', {
   name: {

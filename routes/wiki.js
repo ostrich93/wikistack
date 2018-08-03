@@ -31,4 +31,14 @@ router.get('/add', async (req, res, next) => {
   }
 });
 
+router.get('/:slug', async (req, res, next) => {
+  try {
+    page = await Page.findOne({
+      where: {slug: `${req.params.slug}`}
+    });
+    res.json(page);
+  } catch (error){ console.error(error);}
+  res.send(`hit dynamic route at ${req.params.slug}`);
+});
+
 module.exports = router;
