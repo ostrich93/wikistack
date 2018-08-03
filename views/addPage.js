@@ -6,9 +6,19 @@ module.exports = () => layout(html`
   <hr>
   <form method="POST" action="/wiki/">
     
-    <div>PLACEHOLDER FOR AUTHOR NAME FIELD</div>
-    
-    <div>PLACEHOLDER FOR AUTHOR EMAIL FIELD</div>
+    <div class="form-group">
+      <label for="name" class="col-sm-2 control-label">Author name</div>
+      <div class="col-sm-10">
+        <input id="name" name="name" type="text" class="form-control" value="PLACEHOLDER FOR AUTHOR NAME FIELD"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email" class="col-sm-2 control-label">Author email</div>
+      <div class="col-sm-10">
+        <input id="email" name="email" type="text" class="form-control" value="PLACEHOLDER FOR AUTHOR EMAIL FIELD"/>
+      </div>
+    </div>
     
     <div class="form-group">
       <label for="title" class="col-sm-2 control-label">Page Title</label>
@@ -17,9 +27,19 @@ module.exports = () => layout(html`
       </div>
     </div>
 
-    <div>PLACEHOLDER FOR PAGE CONTENT TEXTAREA FIELD</div>
+    <div class="form-group">
+      <label for="content" class="col-sm-2 control-label">Article Content</div>
+      <div class="col-sm-50">
+        <input id="content" name="content" type="text" class="form-control" value="PLACEHOLDER FOR CONTENT FIELD"/>
+      </div>
+    </div>
     
-    <div>PLACEHOLDER FOR PAGE STATUS INPUT FIELD</div>
+    <div class="form-group">
+      <label for="status" class="col-sm-2 control-label">Status</div>
+      <div class="col-sm-10">
+        <input id="status" name="status" type="text" class="form-control" value="PLACEHOLDER FOR STATUS INPUT FIELD"/>
+      </div>
+    </div>
 
     <div class="col-sm-offset-2 col-sm-10">
       <button type="submit" class="btn btn-primary">submit</button>
