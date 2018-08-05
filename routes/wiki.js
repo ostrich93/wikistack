@@ -18,6 +18,7 @@ router.post('/', async (req, res, next) => {
     title: req.body.title,
     content: req.body.content,
   });
+  const author = req.body.name;
 
   try {
     await page.save();
@@ -39,7 +40,9 @@ router.get('/:slug', async (req, res, next) => {
     const page = await Page.findOne({
       where: { slug: `${req.params.slug}` },
     });
-    res.send(wikiPage(page));
+    const author = req.body.name;
+    console.log(req.body);
+    res.send(wikiPage(page, author));
   } catch (error) {
     console.error(error);
   }

@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const layout = require('./views/layout');
+const main = require('./views/main');
 const models = require('./models');
 const routesWiki = require('./routes/wiki');
 const routesUsers = require('./routes/user');
@@ -13,8 +14,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/wiki', routesWiki);
 app.use('/user', routesUsers);
 
-app.get('/', (req, res) => {
-  res.send(layout(''));
+app.get('/', async (req, res) => {
+  try {
+    const pageList = await models.Page.findAll();
+    console.log(pageList);
+    res.send(main(pageList));
+  } catch (err){
+    res.send(404, err.message);
+  }
 });
 
 const PORT = 3000;
