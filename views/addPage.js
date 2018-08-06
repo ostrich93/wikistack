@@ -38,7 +38,7 @@ module.exports = () =>
     <div class="form-group">
       <label for="status" class="col-sm-2 control-label">Status</label>
       <div class="col-sm-10">
-        <input id="status" name="status" type="text" class="form-control" value="PLACEHOLDER FOR STATUS INPUT FIELD"/>
+        <input id="status" name="status" type="text" class="form-control" value="open"/>
       </div>
     </div>
 
